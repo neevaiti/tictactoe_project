@@ -1,2 +1,2 @@
 # tictactoe_project
-A little Python project w/ Turtle module and maybe others packages.
+A little Python project and the V2 with the Turtle module is coming...
