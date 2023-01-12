@@ -39,18 +39,21 @@ def check_grille(grille:list) -> str or bool:
     :param grille: La liste contenant la grille.
     :return: Une vérification de si la liste est complétée par les joueurs et empêchant les joueurs de jouer l'un sur l'autre.
     """
-    for space in grille:
-        if space is ['X', 'X', 'X']:
-            return False
-        elif space is ['O', '0', 'O']:
-            return False
 
-    for space in grille:
-        if space[0][0:2] is player_cross or player_tac:
-            print("Vous ne pouvez pas jouer sur la case d'un autre joueur")
+    for lines in grille:
+        if lines[0] == lines[1] == lines[2] and lines[0] != None:
+            return True
+        for i in range(3):
+            if grille[0][i] == grille[1][i] == grille[2][i] and grille[0][i] != None:
+                return True
+            for diagonal in grille:
+                if lines[0] == i[0] == lines[1] == i[1] == lines[2] == i[2] and (lines[0] and i[0]) != None:
+                    return True
 
-        elif space[1][0:2] is player_cross or player_tac:
-            print("Vous ne pouvez pas jouer sur la case d'un autre joueur")
+    return False
 
-        elif space[2][0:2] is player_cross or player_tac:
-            print("Vous ne pouvez pas jouer sur la case d'un autre joueur")
+
+
+
+
+
