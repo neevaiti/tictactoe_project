@@ -1,7 +1,7 @@
 """
 1 - Définir la grille - ✅
 1.5 - Affichage de l'interface - ✅
-2 - Vérification de la grille - ⏳
+2 - Vérification de la grille - ✅
 3 - Joueur qui joue - ⏳
 4 - Autre Joueur qui joue - ⏳
 5 - Vérifier que les joueurs ne jouent pas sur l'autre - ⏳
