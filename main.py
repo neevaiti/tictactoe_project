@@ -30,8 +30,6 @@ def display_grille(grille:list) -> str:
     for space in grille:
         print(" ".join(space))
 
-display_grille(grille)
-
 
 def check_grille(grille:list) -> str or bool:
     """
@@ -40,20 +38,27 @@ def check_grille(grille:list) -> str or bool:
     :return: Une vérification de si la liste est complétée par les joueurs et empêchant les joueurs de jouer l'un sur l'autre.
     """
 
-    for lines in grille:
+    for lines in grille[0][2]:
         if lines[0] == lines[1] == lines[2] and lines[0] != None:
             return True
         for i in range(3):
             if grille[0][i] == grille[1][i] == grille[2][i] and grille[0][i] != None:
                 return True
-            for diagonal in grille:
-                if lines[0] == i[0] == lines[1] == i[1] == lines[2] == i[2] and (lines[0] and i[0]) != None:
+            for diagonal in lines and i:
+                if diagonal[lines[0][i[0]]] == diagonal[lines[1][i[1]]] == diagonal[lines[2][i[2]]] and diagonal[lines[0][i[0]]] != None:
+                    return True
+            for diagonal_reverse in lines and i:
+                if diagonal_reverse[lines[0][i[2]]] == diagonal_reverse[lines[1][i[1]]] == diagonal_reverse[lines[2][i[0]]] and diagonal_reverse[lines[0][i[2]]] != None:
                     return True
 
     return False
 
 
+while True:
+    display_grille(grille)
+    ask_players_line = int(input("Dans quelle ligne souhaitez-vous jouer ? [1] - [2] - [3] :"))
+    ask_players_column = int(input("Dans quelle colonne souhaitez-vous jouer ? [1] - [2] - [3] :"))
 
-
-
-
+    for lines in grille:
+        if ask_players_line ==
+    break
