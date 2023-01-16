@@ -12,13 +12,12 @@
 # Définition de la grille
 
 grille = [
-    ["-", "-", "-"],
-    ["-", "-", "-"],
-    ["-", "-", "-"],
+    [" ", " ", " "],
+    [" ", " ", " "],
+    [" ", " ", " "],
 ]
 
-player_cross = "X"
-player_tac = "O"
+player = "X"
 
 # Mise en place des lignes de ma grille
 def display_grille(grille:list) -> str:
@@ -27,8 +26,8 @@ def display_grille(grille:list) -> str:
     :param grille: La liste contenant la grille.
     :return: La grille qui apparaît dans la console.
     """
-    for space in grille:
-        print(" ".join(space))
+    for lines in grille:
+        print("-".join(lines))
 
 
 def check_grille(grille:list) -> str or bool:
@@ -39,26 +38,33 @@ def check_grille(grille:list) -> str or bool:
     """
 
     for lines in grille[0][2]:
-        if lines[0] == lines[1] == lines[2] and lines[0] != None:
+        if lines[0] == player and lines[1] == player and lines[2] == player:
             return True
-        for i in range(3):
-            if grille[0][i] == grille[1][i] == grille[2][i] and grille[0][i] != None:
-                return True
-            for diagonal in lines and i:
-                if diagonal[lines[0][i[0]]] == diagonal[lines[1][i[1]]] == diagonal[lines[2][i[2]]] and diagonal[lines[0][i[0]]] != None:
-                    return True
-            for diagonal_reverse in lines and i:
-                if diagonal_reverse[lines[0][i[2]]] == diagonal_reverse[lines[1][i[1]]] == diagonal_reverse[lines[2][i[0]]] and diagonal_reverse[lines[0][i[2]]] != None:
-                    return True
-
+    for column in range(3):
+        if grille[0][column] == player and grille[1][column] == player and grille[2][column] == player:
+            return True
+    if grille[0][0] == player and grille[1][1] == player and grille[2][2] == player:
+        return True
+    if grille[0][2] == player and grille[1][1] == player and grille[2][0] == player:
+        return True
     return False
 
 
-while True:
-    display_grille(grille)
-    ask_players_line = int(input("Dans quelle ligne souhaitez-vous jouer ? [1] - [2] - [3] :"))
-    ask_players_column = int(input("Dans quelle colonne souhaitez-vous jouer ? [1] - [2] - [3] :"))
 
-    for lines in grille:
-        if ask_players_line ==
-    break
+def play_game():
+    current_player = 'X'
+    while True:
+        display_grille(grille)
+        lines = int(input(f"{current_player} Veuillez choisir une ligne entre (0 1 2): "))
+        column = int(input(f"{current_player} Veuillez choisir une colonne entre (0 1 2): "))
+        if grille[lines][column] != ' ':
+            print("La case est déjà prise.")
+            continue
+        grille[lines][column] = current_player
+        if check_grille(grille, current_player):
+            display_grille(grille)
+            print(f"{current_player} gagne !")
+            break
+        current_player = 'X' if current_player == 'O' else 'O'
+
+play_game()
